@@ -1,4 +1,16 @@
+@font-face {
+    font-weight: 400;
+    font-family: "SFProText";
+    src: url("fonts/SFProText-Regular.ttf");
+}
+@font-face {
+    font-weight: 700;
+    font-family: "SFProText-Bold";
+    src: url("fonts/SFProText-Bold.ttf");
+}
+
 body {
+    font-family: "SFProText";
     background-color: #F3F6F9;
     font-size: 26px;
     margin: 0;
@@ -50,6 +62,10 @@ ul {
     color: #fff;
     background-size: contain;
     align-items: center;
+}
+.header-flex h1 {
+    text-align: center;
+    font-size: 40px;
 }
 
 .header .right-section {
