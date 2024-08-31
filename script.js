@@ -6,9 +6,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const indicators = document.querySelectorAll(".status span");
     
     let currentIndex = 0;
-    const slideWidth = slides[0].offsetWidth+slides[0].offsetWidth + 50; 
+    let startX = 0;
+    let isSwiping = false;
+
+    function getSlideWidth() {
+        if (window.innerWidth <= 914) {
+            return slides[0].offsetWidth + 20; 
+        } else {
+            return slides[0].offsetWidth*2 + 40; 
+        }
+    }
 
     function updateSliderPosition() {
+        const slideWidth = getSlideWidth();
         sliderList.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
         updateIndicators();
     }
@@ -25,14 +35,47 @@ document.addEventListener("DOMContentLoaded", function () {
             updateSliderPosition();
         }
     });
+
     nextBtn.addEventListener("click", () => {
         if (currentIndex < slides.length - 3) {
             currentIndex++;
             updateSliderPosition();
         }
     });
-    updateSliderPosition();
+
+    sliderList.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+        isSwiping = true;
+    });
+
+    sliderList.addEventListener("touchmove", (e) => {
+        if (isSwiping) {
+            const moveX = e.touches[0].clientX;
+            const diffX = startX - moveX;
+            
+            if (diffX > 50) { 
+                if (currentIndex < slides.length - 1) {
+                    currentIndex++;
+                    updateSliderPosition();
+                    isSwiping = false; 
+                }
+            } else if (diffX < -50) { 
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSliderPosition();
+                    isSwiping = false; 
+                }
+            }
+        }
+    });
+
+    sliderList.addEventListener("touchend", () => {
+        isSwiping = false;
+    });
+
+    updateSliderPosition(); 
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const tabTitles = document.querySelectorAll('.tab-title');   
