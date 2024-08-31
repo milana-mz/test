@@ -979,9 +979,6 @@ td:last-child {
         margin-right: 0;
         margin-bottom: 20px;
     }
-    .slider img {
-        width: 400px;
-    }
     .slider-list li {
         display: block;
         padding: 0 8px 2px;
@@ -990,6 +987,12 @@ td:last-child {
         min-width: 400px;
         height: auto;
         box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+    }
+    .slider li img {
+        width: 400px;
+    }
+    .slider {
+        width: 440px;
     }
     .hidden-span {
         display: block;
@@ -1018,6 +1021,9 @@ td:last-child {
     p {
         font-size: 18px;
         max-width: 440px;
+    }
+    .aspects {
+        width: 460px;
     }
     .aspect {
         margin-bottom: 80px;
